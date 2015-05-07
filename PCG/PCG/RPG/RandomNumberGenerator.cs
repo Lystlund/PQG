@@ -8,11 +8,12 @@ namespace PCG
 {
     class RandomNumberGenerator
     {
-        private static Random _generator = new Random();
+		private static Random _generator = new Random();
+
 
         public static int NumberBetween(int minimumValue, int maximumValue)
-        {
-            return _generator.Next(minimumValue, maximumValue);
+		{
+			return _generator.Next(minimumValue, maximumValue);
         }
     }
 }

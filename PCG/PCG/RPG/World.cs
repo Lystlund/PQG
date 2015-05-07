@@ -28,6 +28,8 @@ namespace PCG
         public const int ITEM_ID_HEALTHPOTION = 1;
         public const int ITEM_ID_FRESHMEAT = 2;
 
+		public static Location CurrentLocation { get; set; } 
+
         static World()
         {
             PopulateLocations();
@@ -50,6 +52,8 @@ namespace PCG
             Locations.Add(linhollow);
             Locations.Add(edgecastle);
             Locations.Add(marshbridge);
+
+			CurrentLocation = fairwheat;
         }
 
         private static void PopulateItems()
@@ -112,5 +116,17 @@ namespace PCG
 
             return null;
         }
+
+		public static Item RandomItem() {
+			return Items[RandomNumberGenerator.NumberBetween (0, Items.Count)];
+		}
+
+		public static Location RandomLocation() {
+			return Locations[RandomNumberGenerator.NumberBetween (0, Locations.Count)];
+		}
+
+		public static NPC RandomNPC() {
+			return NPCs [RandomNumberGenerator.NumberBetween (0, NPCs.Count)];
+		}
     }
 }

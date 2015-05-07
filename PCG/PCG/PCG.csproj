@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -13,7 +13,6 @@
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -44,6 +43,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="LogicRules\CaptureRule.cs" />
+    <Compile Include="LogicRules\SpyRule.cs" />
+    <Compile Include="LogicRules\subquestRule.cs" />
     <Compile Include="Motivations\Ability.cs" />
     <Compile Include="Motivations\Comfort.cs" />
     <Compile Include="Motivations\Conquest.cs" />
@@ -96,6 +98,13 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="motivations.txt" />
+    <Compile Include="Rule.cs" />
+    <Compile Include="LogicRules\KillRule.cs" />
+    <Compile Include="LogicRules\StealRule.cs" />
+    <Compile Include="LogicRules\GotoRule.cs" />
+    <Compile Include="LogicRules\LearnRule.cs" />
+    <Compile Include="LogicRules\GetRule.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

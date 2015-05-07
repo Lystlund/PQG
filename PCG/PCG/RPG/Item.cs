@@ -10,6 +10,7 @@ namespace PCG
     {
         public int ID { get; set; }
         public string ItemName { get; set; }
+		public bool InPossession { get; set; }
 
         public Item(int id, string itemName)
         {
