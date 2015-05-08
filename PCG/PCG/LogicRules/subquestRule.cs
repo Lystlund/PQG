@@ -14,13 +14,13 @@ namespace PCG
            
             case 0:
                 Text = "Subquest to goto somewhere";
-                outcomes.Add(new GotoRule(World.LocationByID(RandomNumberGenerator.NumberBetween(0,World.Locations.Count))));
+                outcomes.Add(new GotoRule(World.RandomLocation()));
                 break;
 
             case 1:
                 Text = "Subquest go somewhere perform a subquest, and return";
-                outcomes.Add(new GotoRule(World.LocationByID(RandomNumberGenerator.NumberBetween(0, World.Locations.Count))));
-                //Motivation outcome
+                outcomes.Add(new GotoRule(World.RandomLocation()));
+                outcomes.Add(new Motivations());
                 outcomes.Add(new Rule("Return"));
                 break;
             }

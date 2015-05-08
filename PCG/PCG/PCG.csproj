@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="LogicRules\CaptureRule.cs" />
+    <Compile Include="LogicRules\Motivations.cs" />
     <Compile Include="LogicRules\SpyRule.cs" />
     <Compile Include="LogicRules\subquestRule.cs" />
     <Compile Include="Motivations\Ability.cs" />
