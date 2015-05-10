@@ -38,10 +38,25 @@ namespace PCG
 			rtb1.Text = "";
 
             Rule start = new Motivations();
-
+            
 			foreach (var line in Rule.getText(start)) {
 				rtb1.Text += line + "\n";
 			}
+             
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            rtb1.Text = "";
+            rtbQuest.Text = "";
+
+            Rule start = new Motivations(comboBox2.SelectedIndex, comboBox1.SelectedIndex);
+
+            foreach (var line in Rule.getText(start))
+            {
+                rtb1.Text += line + "\n";
+            }
+
         }
 
         /// <summary>
@@ -58,19 +73,6 @@ namespace PCG
             ScrollToBottomOfMessages();
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            rtb1.Text = "";
-            rtbQuest.Text = "";
-
-            Rule start = new Motivations(comboBox2.SelectedIndex, comboBox1.SelectedIndex);
-
-            foreach (var line in Rule.getText(start))
-            {
-                rtb1.Text += line + "\n";
-            }
-
-        }
 
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {

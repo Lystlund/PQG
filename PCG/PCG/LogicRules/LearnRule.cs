@@ -19,7 +19,8 @@ namespace PCG
 
             case 1:
                 var npc = World.RandomNPC();
-                outcomes.Add(new GotoRule(World.RandomLocation()));
+                Text = "Go someplace, perform subquest, get info from " + npc.NPCName;       
+                outcomes.Add(new GotoRule(npc.Location));
                 outcomes.Add(new subquestRule());
                 outcomes.Add(new Rule("Listen to " + npc.NPCName));
                 break;
@@ -27,7 +28,7 @@ namespace PCG
 			case 2:
 				var readOn = World.RandomItem ();
 				Text = "Read location on " + readOn.ItemName;
-				outcomes.Add (new GotoRule (World.RandomLocation ()));
+				outcomes.Add (new GotoRule (World.RandomLocation()));
 				outcomes.Add (new GetRule (readOn));
 				outcomes.Add (new Rule ("Read location"));
 				break;

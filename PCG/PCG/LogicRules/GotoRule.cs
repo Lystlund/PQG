@@ -7,7 +7,7 @@ namespace PCG
 		public GotoRule(Location location, bool knowWhereToGo = false) {
 			if (World.CurrentLocation == location) {
 				Text = "You are already at " + location.LocationName;
-			} else if (knowWhereToGo) {
+			} else if (World.CurrentLocation != location && knowWhereToGo) {
 				Text = "Go to " + location.LocationName;
 				World.CurrentLocation = location;
 			} else {

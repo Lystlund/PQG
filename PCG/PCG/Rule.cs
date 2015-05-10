@@ -16,7 +16,7 @@ namespace PCG
 
 			string formattedText = "";
 			for (int i = 0; i < indent; i++) {
-				formattedText += "\t";
+				formattedText += "   ";
 			}
 			formattedText += rule.Text;
 			text.Add (formattedText);

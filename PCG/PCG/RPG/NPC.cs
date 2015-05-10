@@ -14,10 +14,11 @@ namespace PCG
 		public Location Location { get; set;}
         public bool UniqueNPC { get; set; }
 
-        public NPC(int id, string npcName)
+        public NPC(int id, string npcName, Location npcLocation)
         {
             ID = id;
             NPCName = npcName;
+            Location = npcLocation;
         }
     }
 }

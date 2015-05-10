@@ -14,9 +14,9 @@ namespace PCG
             
             var returnTo = World.RandomNPC();
             outcomes.Add(new GotoRule(npc.Location));
-            outcomes.Add(new Rule("You spy on " + npc.NPCName));
+            outcomes.Add(new Rule("Spy on " + npc.NPCName));
             outcomes.Add(new GotoRule(returnTo.Location, true));
-            outcomes.Add(new Rule("You return to " + returnTo.NPCName));
+            outcomes.Add(new Rule("Return to " + returnTo.NPCName));
 		}
     }
 }

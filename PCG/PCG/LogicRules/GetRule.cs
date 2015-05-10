@@ -26,7 +26,7 @@ namespace PCG
                 case 2:
                     outcomes.Add(new GotoRule(World.RandomLocation()));
                     outcomes.Add(new GetRule(item));
-                    outcomes.Add(new GotoRule(World.RandomLocation()));
+                    outcomes.Add(new GotoRule(World.RandomLocation(), true));
                     outcomes.Add(new subquestRule());
                     outcomes.Add(new Rule("Exchange " + item.ItemName));
                     break;

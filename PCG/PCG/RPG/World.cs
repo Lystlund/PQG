@@ -68,9 +68,9 @@ namespace PCG
 
         private static void PopulateNPC()
         {
-            NPC PAVEL_HINNANT = new NPC(NPC_ID_PAVEL_HINNANT, "Pavel Hinnant");
-            NPC CHARMAIN_MOCHIZUKI = new NPC(NPC_ID_CHARMAIN_MOCHIZUKI,"Charmain Mochizuki");
-            NPC BENDIX_GEER = new NPC(NPC_ID_BENDIX_GEER,"Bendix Geer");
+            NPC PAVEL_HINNANT = new NPC(NPC_ID_PAVEL_HINNANT, "Pavel Hinnant", RandomLocation());
+            NPC CHARMAIN_MOCHIZUKI = new NPC(NPC_ID_CHARMAIN_MOCHIZUKI, "Charmain Mochizuki", RandomLocation());
+            NPC BENDIX_GEER = new NPC(NPC_ID_BENDIX_GEER, "Bendix Geer", RandomLocation());
 
             //Add NPCs to the static list
             NPCs.Add(PAVEL_HINNANT);

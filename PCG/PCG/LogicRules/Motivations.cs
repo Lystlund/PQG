@@ -8,7 +8,6 @@ namespace PCG
 {
     class Motivations : Rule
     {
-
         public Motivations()
         {
             switch (RandomNumberGenerator.NumberBetween(0, 9))
