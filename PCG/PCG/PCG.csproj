@@ -47,15 +47,6 @@
     <Compile Include="LogicRules\Motivations.cs" />
     <Compile Include="LogicRules\SpyRule.cs" />
     <Compile Include="LogicRules\subquestRule.cs" />
-    <Compile Include="Motivations\Ability.cs" />
-    <Compile Include="Motivations\Comfort.cs" />
-    <Compile Include="Motivations\Conquest.cs" />
-    <Compile Include="Motivations\Equipment.cs" />
-    <Compile Include="Motivations\Knowledge.cs" />
-    <Compile Include="Motivations\Protection.cs" />
-    <Compile Include="Motivations\Reputation.cs" />
-    <Compile Include="Motivations\Serenity.cs" />
-    <Compile Include="Motivations\Wealth.cs" />
     <Compile Include="PCG.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -69,15 +60,7 @@
     <Compile Include="RPG\Location.cs" />
     <Compile Include="RPG\NPC.cs" />
     <Compile Include="RPG\World.cs" />
-    <Compile Include="Rules\capturePCG.cs" />
-    <Compile Include="Rules\getPCG.cs" />
-    <Compile Include="Rules\gotoPCG.cs" />
-    <Compile Include="Rules\killPCG.cs" />
-    <Compile Include="Rules\learnPCG.cs" />
     <Compile Include="RPG\RandomNumberGenerator.cs" />
-    <Compile Include="Rules\spyPCG.cs" />
-    <Compile Include="Rules\stealPCG.cs" />
-    <Compile Include="Rules\subQuestPCG.cs" />
     <EmbeddedResource Include="PCG.resx">
       <DependentUpon>PCG.cs</DependentUpon>
     </EmbeddedResource>

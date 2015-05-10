@@ -35,7 +35,7 @@ namespace PCG
                     Text = "Interview " + npc2.NPCName;
                     outcomes.Add(new GotoRule(npc2.Location));
                     outcomes.Add(new Rule("Listen to " + npc2.NPCName));
-                    outcomes.Add(new GotoRule(World.RandomLocation()));
+                    outcomes.Add(new GotoRule(World.RandomLocation(), true));
                     outcomes.Add(new Rule("Report"));
                     break;
                     
@@ -45,7 +45,7 @@ namespace PCG
                     outcomes.Add(new GetRule(item2));
                     outcomes.Add(new GotoRule(World.RandomLocation()));
                     outcomes.Add(new Rule("Use " + item2.ItemName));
-                    outcomes.Add(new GotoRule(World.RandomLocation()));
+                    outcomes.Add(new GotoRule(World.RandomLocation(), true));
                     outcomes.Add(new Rule("Give " + item2.ItemName));
                     break;
                 }
@@ -381,7 +381,7 @@ namespace PCG
                     Text = "Interview " + npc2.NPCName;
                     outcomes.Add(new GotoRule(npc2.Location));
                     outcomes.Add(new Rule("Listen to " + npc2.NPCName));
-                    outcomes.Add(new GotoRule(World.RandomLocation()));
+                    outcomes.Add(new GotoRule(World.RandomLocation(), true));
                     outcomes.Add(new Rule("Report"));
                     break;
 
@@ -391,7 +391,7 @@ namespace PCG
                     outcomes.Add(new GetRule(item2));
                     outcomes.Add(new GotoRule(World.RandomLocation()));
                     outcomes.Add(new Rule("Use " + item2.ItemName));
-                    outcomes.Add(new GotoRule(World.RandomLocation()));
+                    outcomes.Add(new GotoRule(World.RandomLocation(), true));
                     outcomes.Add(new Rule("Give " + item2.ItemName));
                     break;
                 }
