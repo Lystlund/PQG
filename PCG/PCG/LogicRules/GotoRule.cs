@@ -4,13 +4,15 @@ namespace PCG
 {
 	public class GotoRule : Rule
 	{
-		public GotoRule(Location location, bool knowWhereToGo = false) {
+		public GotoRule(Location location, bool knowWhereToGo = false, bool CameFromLearn = false) {
 			if (World.CurrentLocation == location) {
 				Text = "You are already at " + location.LocationName;
 			} else if (World.CurrentLocation != location && knowWhereToGo) {
 				Text = "Go to " + location.LocationName;
 				World.CurrentLocation = location;
-			} else {
+            } else if (CameFromLearn){
+                Text = "Explore the nearby area";
+            } else {
 				switch (RandomNumberGenerator.NumberBetween (0, 2)) {
 				case 0:
 					Text = "Explore the nearby area";

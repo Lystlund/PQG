@@ -11,6 +11,7 @@ namespace PCG
         public static readonly List<Location> Locations = new List<Location>();
         public static readonly List<Item> Items = new List<Item>();
         public static readonly List<NPC> NPCs = new List<NPC>();
+        public static bool SubQuestDone = false;
 
         // Location IDs
         public const int LOCATION_ID_FAIRWHEAT = 1;
