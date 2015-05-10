@@ -10,16 +10,16 @@ namespace PCG
     {
         public CaptureRule(NPC npc, Item item)
 		{
-			if (npc.Alive) {
-				Text = npc.NPCName + " is dead";
-			} else {
-				npc.Alive = false;
-				Text = "Get something, Go someplace and use it to capture " + npc.NPCName;
+            if (npc.Alive){
+                Text = npc.NPCName + " is dead";
+            } else {
+                npc.Alive = false;
+                Text = "Get something, Go someplace and use it to capture " + npc.NPCName;
 
                 outcomes.Add(new GetRule(item));
                 outcomes.Add(new GotoRule(npc.Location));
                 outcomes.Add(new Rule("Capture " + npc.NPCName));
-			}
+            }
 		}
     }
 }
