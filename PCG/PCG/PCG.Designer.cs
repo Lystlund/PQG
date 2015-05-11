@@ -30,7 +30,6 @@
         {
             this.rtb1 = new System.Windows.Forms.RichTextBox();
             this.button1 = new System.Windows.Forms.Button();
-            this.rtbQuest = new System.Windows.Forms.RichTextBox();
             this.button2 = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
@@ -38,10 +37,10 @@
             // 
             // rtb1
             // 
-            this.rtb1.Location = new System.Drawing.Point(12, 209);
+            this.rtb1.Location = new System.Drawing.Point(12, 41);
             this.rtb1.Name = "rtb1";
             this.rtb1.ReadOnly = true;
-            this.rtb1.Size = new System.Drawing.Size(760, 341);
+            this.rtb1.Size = new System.Drawing.Size(760, 509);
             this.rtb1.TabIndex = 1;
             this.rtb1.Text = "";
             this.rtb1.TextChanged += new System.EventHandler(this.rtb1_TextChanged);
@@ -55,16 +54,6 @@
             this.button1.Text = "Generate Random Quest";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click_1);
-            // 
-            // rtbQuest
-            // 
-            this.rtbQuest.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rtbQuest.Location = new System.Drawing.Point(12, 41);
-            this.rtbQuest.Name = "rtbQuest";
-            this.rtbQuest.ReadOnly = true;
-            this.rtbQuest.Size = new System.Drawing.Size(760, 162);
-            this.rtbQuest.TabIndex = 3;
-            this.rtbQuest.Text = "";
             // 
             // button2
             // 
@@ -102,7 +91,6 @@
             this.Controls.Add(this.comboBox2);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.button2);
-            this.Controls.Add(this.rtbQuest);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.rtb1);
             this.Name = "PCG";
@@ -115,7 +103,6 @@
 
         private System.Windows.Forms.RichTextBox rtb1;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.RichTextBox rtbQuest;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.ComboBox comboBox2;

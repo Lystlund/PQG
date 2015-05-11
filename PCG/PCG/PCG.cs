@@ -34,21 +34,20 @@ namespace PCG
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-			rtbQuest.Text = "";
 			rtb1.Text = "";
+
+            World.SubQuestDone = false;
 
             Rule start = new Motivations();
             
 			foreach (var line in Rule.getText(start)) {
 				rtb1.Text += line + "\n";
 			}
-             
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             rtb1.Text = "";
-            rtbQuest.Text = "";
 
             Rule start = new Motivations(comboBox2.SelectedIndex, comboBox1.SelectedIndex);
 
@@ -72,7 +71,6 @@ namespace PCG
         {
             ScrollToBottomOfMessages();
         }
-
 
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {

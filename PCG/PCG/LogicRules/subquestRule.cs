@@ -11,19 +11,19 @@ namespace PCG
         public subquestRule()
 		{
             switch (RandomNumberGenerator.NumberBetween(0, 2)){
-           
+
             case 0:
-                Text = "Subquest to goto somewhere";
+                Text = "[Go somewhere]";
                 outcomes.Add(new GotoRule(World.RandomLocation()));
                 break;
 
             case 1:
-                Text = "Subquest go somewhere perform a subquest, and return";
+                Text = "[Go somewhere perform a subquest, and return]";
                 outcomes.Add(new GotoRule(World.RandomLocation()));
                 outcomes.Add(new Motivations());
                 outcomes.Add(new Rule("Return"));
                 break;
             }
-		}
+        }
     }
 }
