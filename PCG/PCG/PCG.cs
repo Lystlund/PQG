@@ -28,7 +28,6 @@ namespace PCG
             comboBox2.Items.Add("Wealth");
             comboBox2.Items.Add("Ability");
             comboBox2.Items.Add("Equipment");
-
 			//-------------------------------------
         }
 
@@ -49,17 +48,57 @@ namespace PCG
         {
             rtb1.Text = "";
 
-            /*
-            Rule start = new Motivations(comboBox2.SelectedIndex, comboBox1.SelectedIndex);
+            QualityOne(5,1,6, World.RandomNPC());
+        }
 
-            foreach (var line in Rule.getText(start))
+        private void QualityOne(int a, int b, int c, NPC npc)
+        {
+            float roll1 = RandomNumberGenerator.NumberBetween(a, a);
+            float roll2 = RandomNumberGenerator.NumberBetween(b, c);
+
+            Console.WriteLine("Rolls NPC1: " + roll1 + "  " + roll2);
+
+            if (roll1 > roll2)
             {
-                rtb1.Text += line + "\n";
+                Rule start = new Motivations(npc.jobs);
+
+                foreach (var line in Rule.getText(start))
+                {
+                    rtb1.Text += line + "\n";
+                }
+
+                QualityOne(a - 1, b + 1, c, npc);
+            }else{
+                QualityTwo(3, 1, 4, World.RandomNPC());
             }
-             */
+        }
 
+        private void QualityTwo(int a, int b, int c, NPC npc)
+        {
+            float roll1 = RandomNumberGenerator.NumberBetween(a, a);
+            float roll2 = RandomNumberGenerator.NumberBetween(b, c);
 
+            Console.WriteLine("Rolls NPC2: " + roll1 + "  " + roll2);
 
+            if (roll1 > roll2)
+            {
+                Rule start = new Motivations(npc.jobs);
+
+                foreach (var line in Rule.getText(start))
+                {
+                    rtb1.Text += line + "\n";
+                }
+
+                QualityTwo(a - 1, b + 1, c, npc);
+            }else{
+                Rule start = new Motivations(World.RandomNPC().jobs);
+                Console.WriteLine("Rolls NPC3");
+
+                foreach (var line in Rule.getText(start))
+                {
+                    rtb1.Text += line + "\n";
+                }
+            }
         }
 
         /// <summary>
