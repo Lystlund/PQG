@@ -169,16 +169,16 @@ namespace PCG
 
         private static void PopulateNPC()
         {
-            NPC PAVEL_HINNANT = new NPC(NPC_ID_PAVEL_HINNANT, "Pavel Hinnant", RandomLocation());
-            NPC CHARMAIN_MOCHIZUKI = new NPC(NPC_ID_CHARMAIN_MOCHIZUKI, "Charmain Mochizuki", RandomLocation());
-            NPC BENDIX_GEER = new NPC(NPC_ID_BENDIX_GEER, "Bendix Geer", RandomLocation());
-            NPC RUBEN_LOHRENZ = new NPC(NPC_ID_RUBEN_LOHRENZ, "Ruben Lohrenz", RandomLocation());
-            NPC FLETCHER_BRAY = new NPC(NPC_ID_FLETCHER_BRAY, "Fletcher Bray", RandomLocation());
-            NPC AEGIDIUS_DRECHSLER = new NPC(NPC_ID_AEGIDIUS_DRECHSLER, "Aegidius Drechsler", RandomLocation());
-            NPC MBALI_BAUER = new NPC(NPC_ID_MBALI_BAUER, "Mbali Bauer", RandomLocation());
-            NPC AULAY_NICHOLSON = new NPC(NPC_ID_AULAY_NICHOLSON, "Aulay Nicholson", RandomLocation());
-            NPC GERTRUIDA_CRESPO = new NPC(NPC_ID_GERTRUIDA_CRESPO, "Gertruida Crespo", RandomLocation());
-            NPC CORRIE_NARDOVINO = new NPC(NPC_ID_CORRIE_NARDOVINO, "Corrie Nardovino", RandomLocation());
+            NPC PAVEL_HINNANT = new NPC(NPC_ID_PAVEL_HINNANT, "Pavel Hinnant", RandomLocation(), NPC.job.Farmer);
+            NPC CHARMAIN_MOCHIZUKI = new NPC(NPC_ID_CHARMAIN_MOCHIZUKI, "Charmain Mochizuki", RandomLocation(), NPC.job.Bard);
+            NPC BENDIX_GEER = new NPC(NPC_ID_BENDIX_GEER, "Bendix Geer", RandomLocation(), NPC.job.Blacksmith);
+            NPC RUBEN_LOHRENZ = new NPC(NPC_ID_RUBEN_LOHRENZ, "Ruben Lohrenz", RandomLocation(), NPC.job.Merchant);
+            NPC FLETCHER_BRAY = new NPC(NPC_ID_FLETCHER_BRAY, "Fletcher Bray", RandomLocation(), NPC.job.Guard);
+            NPC AEGIDIUS_DRECHSLER = new NPC(NPC_ID_AEGIDIUS_DRECHSLER, "Aegidius Drechsler", RandomLocation(), NPC.job.Mayor);
+            NPC MBALI_BAUER = new NPC(NPC_ID_MBALI_BAUER, "Mbali Bauer", RandomLocation(), NPC.job.Knight);
+            NPC AULAY_NICHOLSON = new NPC(NPC_ID_AULAY_NICHOLSON, "Aulay Nicholson", RandomLocation(), NPC.job.Priest);
+            NPC GERTRUIDA_CRESPO = new NPC(NPC_ID_GERTRUIDA_CRESPO, "Gertruida Crespo", RandomLocation(), NPC.job.King);
+           // NPC CORRIE_NARDOVINO = new NPC(NPC_ID_CORRIE_NARDOVINO, "Corrie Nardovino", RandomLocation(), NPC.job.Farmer);
 
             //Add NPCs to the static list
             NPCs.Add(PAVEL_HINNANT);
@@ -190,7 +190,7 @@ namespace PCG
             NPCs.Add(MBALI_BAUER);
             NPCs.Add(AULAY_NICHOLSON);
             NPCs.Add(GERTRUIDA_CRESPO);
-            NPCs.Add(CORRIE_NARDOVINO);
+           // NPCs.Add(CORRIE_NARDOVINO);
 
             RandomNumberGenerator.NumberBetween(0, Items.Count);
         }       

@@ -49,12 +49,16 @@ namespace PCG
         {
             rtb1.Text = "";
 
+            /*
             Rule start = new Motivations(comboBox2.SelectedIndex, comboBox1.SelectedIndex);
 
             foreach (var line in Rule.getText(start))
             {
                 rtb1.Text += line + "\n";
             }
+             */
+
+
 
         }
 
