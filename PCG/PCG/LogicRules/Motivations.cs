@@ -383,7 +383,7 @@ namespace PCG
                     break;
 
                 case 1:
-                    var item = World.RandomItem(RandomNumberGenerator.NumberBetween(0, 2));
+                    var item = World.FarmerItems[RandomNumberGenerator.NumberBetween(0, World.FarmerItems.Count())];
                     Text = "[Use " + item.ItemName + " in the field]";
                     outcomes.Add(new GetRule(item));
                     outcomes.Add(new GotoRule(World.RandomLocation()));
@@ -395,7 +395,7 @@ namespace PCG
                 case 2:
                     Text = "[Kill Pests]";
                     outcomes.Add(new GotoRule(World.RandomLocation()));
-                    outcomes.Add(new Rule("Damage Pest"));
+                    outcomes.Add(new Rule("Damage " + World.FarmerEnemies[RandomNumberGenerator.NumberBetween(0, World.FarmerEnemies.Count())]));
                     outcomes.Add(new GotoRule(World.RandomLocation(),true));
                     outcomes.Add(new Rule("Report"));
                     break;
@@ -412,7 +412,7 @@ namespace PCG
                 case 4:
                     Text = "[Check on NPC(2)]";
                     var npc3 = World.RandomNPC();
-                    var item2 = World.RandomItem(1);
+                    var item2 = World.FarmerItems[RandomNumberGenerator.NumberBetween(0, World.FarmerItems.Count())];
                     outcomes.Add(new GotoRule(npc3.Location));
                     outcomes.Add(new Rule("Take " + item2.ItemName));
                     outcomes.Add(new GotoRule(World.RandomLocation(), true));
@@ -421,7 +421,7 @@ namespace PCG
 
                 case 5:
                     Text = "[Treat or repair (2)]";
-                    var item3 = World.RandomItem(3);
+                    var item3 = World.FarmerItems[RandomNumberGenerator.NumberBetween(0, World.FarmerItems.Count())];
                     outcomes.Add(new GotoRule(World.RandomLocation()));
                     outcomes.Add(new Rule("Repair using " + item3.ItemName));
                     break;
@@ -447,16 +447,7 @@ namespace PCG
 
                 case 1:
                     Text = "[Obtain rare item]";
-                    int holder = RandomNumberGenerator.NumberBetween(0, 2);
-                    var item = World.RandomItem();
-                    if (holder == 0)
-                    {
-                        item = World.RandomItem(0);
-                    }
-                    else
-                    {
-                        item = World.RandomItem(2);
-                    }
+                    var item = World.BardItems[RandomNumberGenerator.NumberBetween(0, World.BardItems.Count())];
                     outcomes.Add(new GetRule(item));
                     outcomes.Add(new GotoRule(World.RandomLocation(), true));
                     outcomes.Add(new Rule("Give rare " + item.ItemName));
@@ -464,10 +455,9 @@ namespace PCG
 
                 case 2:
                     Text = "[Kill enemies]";
-                    var npc2 = World.RandomNPC();
-                    npc2.Location = World.RandomLocation(1);
-                    outcomes.Add(new GotoRule(npc2.Location));
-                    outcomes.Add(new KillRule(npc2));
+                    var npc2 = World.BardEnemies[RandomNumberGenerator.NumberBetween(0, World.BardEnemies.Count())];
+                    outcomes.Add(new GotoRule(World.RandomLocation()));
+                    outcomes.Add(new Rule("Kill " + npc2.Name));
                     outcomes.Add(new GotoRule(World.RandomLocation(), true));
                     outcomes.Add(new Rule("Report"));
                     break;
@@ -481,10 +471,9 @@ namespace PCG
 
                 case 4:
                     Text = "[Revenge, Justice]";
-                    var npc3 = World.RandomNPC();
-                    npc3.Location = World.RandomLocation(1);
-                    outcomes.Add(new GotoRule(npc3.Location));
-                    outcomes.Add(new Rule("Damage " + npc3.NPCName));
+                    var npc3 = World.BardEnemies[RandomNumberGenerator.NumberBetween(0, World.BardEnemies.Count())];
+                    outcomes.Add(new GotoRule(World.RandomLocation(1)));
+                    outcomes.Add(new Rule("Damage " + npc3.Name));
                     break;
 
                 case 5:
@@ -499,16 +488,7 @@ namespace PCG
                 {
                 case 0:
                     Text = "[Obtain rare item]";
-                    int holder = RandomNumberGenerator.NumberBetween(0, 2);
-                    var item = World.RandomItem();
-                    if (holder == 0)
-                    {
-                        item = World.RandomItem(0);
-                    }
-                    else
-                    {
-                        item = World.RandomItem(2);
-                    }
+                    var item = World.BlacksmithItems[RandomNumberGenerator.NumberBetween(0, World.BlacksmithItems.Count())];
                     outcomes.Add(new GetRule(item));
                     outcomes.Add(new GotoRule(World.RandomLocation(), true));
                     outcomes.Add(new Rule("Give rare " + item.ItemName));
@@ -526,7 +506,7 @@ namespace PCG
                 case 2:
                     Text = "[Check on NPC(2)]";
                     var npc2 = World.RandomNPC();
-                    var item2 = World.RandomItem(1);
+                    var item2 = World.BlacksmithItems[RandomNumberGenerator.NumberBetween(0, World.BlacksmithItems.Count())];
                     outcomes.Add(new GotoRule(npc2.Location));
                     outcomes.Add(new Rule("Take " + item2.ItemName));
                     outcomes.Add(new GotoRule(World.RandomLocation(), true));
@@ -535,7 +515,7 @@ namespace PCG
 
                 case 3:
                     Text = "[Recover lost/stolen item]";
-                    var item3 = World.RandomItem(RandomNumberGenerator.NumberBetween(0, 3));
+                    var item3 = World.BlacksmithItems[RandomNumberGenerator.NumberBetween(0, World.BlacksmithItems.Count())];
                     var npc3 = World.RandomNPC();
                     outcomes.Add(new GetRule(item3));
                     outcomes.Add(new GotoRule(npc3.Location, true));
@@ -544,14 +524,14 @@ namespace PCG
 
                 case 4:
                     Text = "[Treat or repair (2)]";
-                    var item4 = World.RandomItem(3);
+                    var item4 = World.BlacksmithItems[RandomNumberGenerator.NumberBetween(0, World.BlacksmithItems.Count())];
                     outcomes.Add(new GotoRule(World.RandomLocation()));
                     outcomes.Add(new Rule("Repair using " + item4.ItemName));
                     break;
 
                 case 5:
                     Text = "[Obtain training materials]";
-                    var item5 = World.RandomItem(3);
+                    var item5 = World.BlacksmithItems[RandomNumberGenerator.NumberBetween(0, World.BlacksmithItems.Count())];
                     outcomes.Add(new GetRule(item5));
                     outcomes.Add(new Rule("Use"));
                     break;
@@ -559,11 +539,12 @@ namespace PCG
                 case 6:
                     Text = "[Practice skill]";
                     outcomes.Add(new Rule("Use"));
+                    outcomes.Add(new Rule("You learned " + World.BlacksmithSkills[RandomNumberGenerator.NumberBetween(0, World.BlacksmithSkills.Count())]));
                     break;
 
                 case 7:
                     Text = "[Deliver supplies]";
-                    var item6 = World.RandomItem(3);
+                    var item6 = World.BlacksmithItems[RandomNumberGenerator.NumberBetween(0, World.BlacksmithItems.Count())];
                     outcomes.Add(new GetRule(item6));
                     outcomes.Add(new GotoRule(World.RandomLocation(), true));
                     outcomes.Add(new Rule("Give supplies"));
@@ -577,7 +558,7 @@ namespace PCG
                 {
                 case 0:
                     Text = "[Obtain luxuries]";
-                    var item = World.RandomItem(2);
+                    var item = World.MerchantItems[RandomNumberGenerator.NumberBetween(0, World.MerchantItems.Count())];
                     outcomes.Add(new GetRule(item));
                     outcomes.Add(new GotoRule(World.RandomLocation(), true));
                     outcomes.Add(new Rule("Give " + item.ItemName));
@@ -586,30 +567,22 @@ namespace PCG
                 case 1:
                     Text = "[Kill Pests]";
                     outcomes.Add(new GotoRule(World.RandomLocation()));
-                    outcomes.Add(new Rule("Damage Pest"));
+                    outcomes.Add(new Rule("Damage " + World.MerchantEnemies[RandomNumberGenerator.NumberBetween(0, World.MerchantEnemies.Count())]));
                     outcomes.Add(new GotoRule(World.RandomLocation(), true));
                     outcomes.Add(new Rule("Report"));
                     break;
 
                 case 2:
                     Text = "[Obtain rare item]";
-                    int holder = RandomNumberGenerator.NumberBetween(0, 2);
-                    var item2 = World.RandomItem();
-                    if (holder == 0)
-                    {
-                        item = World.RandomItem(0);
-                    }else
-                    {
-                        item = World.RandomItem(2);
-                    }
-                    outcomes.Add(new GetRule(item));
+                    var item2 = World.MerchantItems[RandomNumberGenerator.NumberBetween(0, World.MerchantItems.Count())];
+                    outcomes.Add(new GetRule(item2));
                     outcomes.Add(new GotoRule(World.RandomLocation(), true));
                     outcomes.Add(new Rule("Give rare " + item2.ItemName));
                     break;
 
                 case 3:
                     Text = "[Recover lost/stolen item]";
-                    var item3 = World.RandomItem(RandomNumberGenerator.NumberBetween(0,3));
+                    var item3 = World.MerchantItems[RandomNumberGenerator.NumberBetween(0, World.MerchantItems.Count())];
                     var npc = World.RandomNPC();
                     outcomes.Add(new GetRule(item3));
                     outcomes.Add(new GotoRule(npc.Location, true));
@@ -618,7 +591,7 @@ namespace PCG
 
                 case 4:
                     Text = "[Steal valuables for resale]";
-                    var item4 = World.RandomItem(2);
+                    var item4 = World.MerchantItems[RandomNumberGenerator.NumberBetween(0, World.MerchantItems.Count())];
                     var npc2 = World.RandomNPC();
                     outcomes.Add(new GotoRule(npc2.Location));
                     outcomes.Add(new StealRule(npc2, item4));
@@ -631,7 +604,7 @@ namespace PCG
 
                 case 6:
                     Text = "[Deliver supplies]";
-                    var item5 = World.RandomItem(3);
+                    var item5 = World.MerchantItems[RandomNumberGenerator.NumberBetween(0, World.MerchantItems.Count())];
                     outcomes.Add(new GetRule(item5));
                     outcomes.Add(new GotoRule(World.RandomLocation(), true));
                     outcomes.Add(new Rule("Give supplies"));
@@ -639,7 +612,7 @@ namespace PCG
 
                 case 7:
                     Text = "[Steal supplies]";
-                    var item6 = World.RandomItem(3);
+                    var item6 = World.MerchantItems[RandomNumberGenerator.NumberBetween(0, World.MerchantItems.Count())];
                     var npc3 = World.RandomNPC();
                     outcomes.Add(new StealRule(npc3, item6));
                     break;
@@ -671,10 +644,9 @@ namespace PCG
 
                 case 2:
                     Text = "[Kill enemies]";
-                    var npc2 = World.RandomNPC();
-                    npc2.Location = World.RandomLocation(1);
-                    outcomes.Add(new GotoRule(npc2.Location));
-                    outcomes.Add(new KillRule(npc2));
+                    var npc2 = World.GuardEnemies[RandomNumberGenerator.NumberBetween(0, World.GuardEnemies.Count())];
+                    outcomes.Add(new GotoRule(World.RandomLocation(1)));
+                    outcomes.Add(new Rule ("Kill " + npc2.Name));
                     outcomes.Add(new GotoRule(World.RandomLocation(), true));
                     outcomes.Add(new Rule("Report"));
                     break;
@@ -688,16 +660,15 @@ namespace PCG
 
                 case 4:
                     Text = "[Revenge, Justice]";
-                    var npc3 = World.RandomNPC();
-                    npc3.Location = World.RandomLocation(1);
-                    outcomes.Add(new GotoRule(npc3.Location));
-                    outcomes.Add(new Rule("Damage " + npc3.NPCName));
+                    var npc3 = World.GuardEnemies[RandomNumberGenerator.NumberBetween(0, World.GuardEnemies.Count())];
+                    outcomes.Add(new GotoRule(World.RandomLocation(1)));
+                    outcomes.Add(new Rule("Damage " + npc3.Name));
                     break;
 
                 case 5:
                     Text = "[Capture Criminal(1)]";
                     var npc4 = World.RandomNPC();
-                    var item = World.RandomItem(2);
+                    var item = World.GuardItems[RandomNumberGenerator.NumberBetween(0, World.GuardItems.Count())];
                     npc4.Location = World.RandomLocation(1);
                     outcomes.Add(new GetRule(item));
                     outcomes.Add(new GotoRule(npc4.Location, true));
@@ -709,7 +680,7 @@ namespace PCG
                 case 6:
                     Text = "[Capture Criminal(2)]";
                     var npc5 = World.RandomNPC();
-                    var item2 = World.RandomItem(2);
+                    var item2 = World.GuardItems[RandomNumberGenerator.NumberBetween(0, World.GuardItems.Count())];
                     npc5.Location = World.RandomLocation(1);
                     outcomes.Add(new GetRule(item2));
                     outcomes.Add(new GotoRule(npc5.Location, true));
@@ -731,7 +702,7 @@ namespace PCG
                 case 8:
                     Text = "[Check on NPC(2)]";
                     var npc7 = World.RandomNPC();
-                    var item3 = World.RandomItem(1);
+                    var item3 = World.GuardItems[RandomNumberGenerator.NumberBetween(0, World.GuardItems.Count())];
                     outcomes.Add(new GotoRule(npc7.Location));
                     outcomes.Add(new Rule("Take " + item3.ItemName));
                     outcomes.Add(new GotoRule(World.RandomLocation(), true));
@@ -740,7 +711,7 @@ namespace PCG
 
                 case 9:
                     Text = "[Recover lost/stolen item]";
-                    var item4 = World.RandomItem(RandomNumberGenerator.NumberBetween(0, 3));
+                    var item4 = World.GuardItems[RandomNumberGenerator.NumberBetween(0, World.GuardItems.Count())];
                     var npc8 = World.RandomNPC();
                     outcomes.Add(new GetRule(item4));
                     outcomes.Add(new GotoRule(npc8.Location, true));
@@ -761,14 +732,14 @@ namespace PCG
                 case 11:
                     Text = "[Attack threatening entities]";
                     outcomes.Add(new GotoRule(World.RandomLocation(1)));
-                    outcomes.Add(new Rule("Damage entities"));
+                    outcomes.Add(new Rule("Damage " + World.GuardEnemies[RandomNumberGenerator.NumberBetween(0, World.GuardEnemies.Count())]));
                     outcomes.Add(new GotoRule(World.RandomLocation(), true));
                     outcomes.Add(new Rule("Report"));
                     break;
 
                 case 12:
                     Text = "[Create Diversion (1)]";
-                    var item5 = World.RandomItem(1);
+                    var item5 = World.GuardItems[RandomNumberGenerator.NumberBetween(0, World.GuardItems.Count())];
                     outcomes.Add(new GetRule(item5));
                     outcomes.Add(new GotoRule(World.RandomLocation(1), true));
                     outcomes.Add(new Rule("Use " + item5.ItemName));
@@ -804,7 +775,7 @@ namespace PCG
                 {
                 case 0:
                     Text = "[Deliver item for study]";
-                    var item = World.RandomItem(0);
+                    var item = World.MayorItems[RandomNumberGenerator.NumberBetween(0, World.MayorItems.Count())];
                     var npc = World.RandomNPC();
                     outcomes.Add(new GetRule(item));
                     outcomes.Add(new GotoRule(npc.Location, true));
@@ -826,7 +797,7 @@ namespace PCG
                     break;
                 case 3:
                     Text = "[Obtain luxuries]";
-                    var item2 = World.RandomItem(2);
+                    var item2 = World.MayorItems[RandomNumberGenerator.NumberBetween(0, World.MayorItems.Count())];
                     outcomes.Add(new GetRule(item2));
                     outcomes.Add(new GotoRule(World.RandomLocation(), true));
                     outcomes.Add(new Rule("Give " + item2.ItemName));
@@ -835,23 +806,22 @@ namespace PCG
                 case 4:
                     Text = "[Kill Pests]";
                     outcomes.Add(new GotoRule(World.RandomLocation()));
-                    outcomes.Add(new Rule("Damage Pest"));
+                    outcomes.Add(new Rule("Damage " + World.MayorEnemies[RandomNumberGenerator.NumberBetween(0, World.MayorEnemies.Count())]));
                     outcomes.Add(new GotoRule(World.RandomLocation(), true));
                     outcomes.Add(new Rule("Report"));
                     break;
 
                 case 5:
                     Text = "[Revenge, Justice]";
-                    var npc3 = World.RandomNPC();
-                    npc3.Location = World.RandomLocation(1);
-                    outcomes.Add(new GotoRule(npc3.Location));
-                    outcomes.Add(new Rule("Damage " + npc3.NPCName));
+                    var npc3 = World.MayorEnemies[RandomNumberGenerator.NumberBetween(0, World.MayorEnemies.Count())];
+                    outcomes.Add(new GotoRule(World.RandomLocation()));
+                    outcomes.Add(new Rule("Damage " + npc3.Name));
                     break;
 
                 case 6:
                     Text = "[Capture Criminal(1)]";
                     var npc4 = World.RandomNPC();
-                    var item3 = World.RandomItem(2);
+                    var item3 = World.MayorItems[RandomNumberGenerator.NumberBetween(0, World.MayorItems.Count())];
                     npc4.Location = World.RandomLocation(1);
                     outcomes.Add(new GetRule(item3));
                     outcomes.Add(new GotoRule(npc4.Location, true));
@@ -872,7 +842,7 @@ namespace PCG
                 case 8:
                     Text = "[Check on NPC(2)]";
                     var npc6 = World.RandomNPC();
-                    var item4 = World.RandomItem(1);
+                    var item4 = World.MayorItems[RandomNumberGenerator.NumberBetween(0, World.MayorItems.Count())];
                     outcomes.Add(new GotoRule(npc6.Location));
                     outcomes.Add(new Rule("Take " + item4.ItemName));
                     outcomes.Add(new GotoRule(World.RandomLocation(), true));
@@ -884,7 +854,7 @@ namespace PCG
                     var npc7 = World.RandomNPC();
                     npc7.Location = World.RandomLocation(1);
                     outcomes.Add(new GotoRule(npc7.Location));
-                    outcomes.Add(new Rule("Damage captures"));
+                    outcomes.Add(new Rule("Damage " + World.MayorEnemies[RandomNumberGenerator.NumberBetween(0, World.MayorEnemies.Count())]));
                     outcomes.Add(new Rule("Escort " + npc7.NPCName));
                     outcomes.Add(new GotoRule(World.RandomLocation(), true));
                     outcomes.Add(new Rule("Report"));
@@ -892,9 +862,10 @@ namespace PCG
 
                 case 10:
                     Text = "[Research a skill (1)]";
-                    var item5 = World.RandomItem(3);
+                    var item5 = World.MayorItems[RandomNumberGenerator.NumberBetween(0, World.MayorItems.Count())];
                     outcomes.Add(new GetRule(item5));
                     outcomes.Add(new Rule("Use"));
+                    outcomes.Add(new Rule(World.MayorSkills[RandomNumberGenerator.NumberBetween(0, World.MayorSkills.Count())].Name));
                     break;
 
                 case 11:
@@ -902,6 +873,7 @@ namespace PCG
                     var item6 = World.RandomItem(3);
                     outcomes.Add(new GetRule(item6));
                     outcomes.Add(new Rule("Experiment"));
+                    outcomes.Add(new Rule(World.MayorSkills[RandomNumberGenerator.NumberBetween(0, World.MayorSkills.Count())].Name));
                     break;
                 }
                 break;
@@ -920,16 +892,7 @@ namespace PCG
 
                 case 1:
                      Text = "[Obtain rare item]";
-                     int holder = RandomNumberGenerator.NumberBetween(0, 2);
-                     var item = World.RandomItem();
-                     if (holder == 0)
-                     {
-                         item = World.RandomItem(0);
-                     }
-                     else
-                     {
-                         item = World.RandomItem(2);
-                     }
+                     var item = World.KnightItems[RandomNumberGenerator.NumberBetween(0, World.KnightItems.Count())];
                      outcomes.Add(new GetRule(item));
                      outcomes.Add(new GotoRule(World.RandomLocation(), true));
                      outcomes.Add(new Rule("Give rare " + item.ItemName));
@@ -937,10 +900,9 @@ namespace PCG
 
                 case 2:
                      Text = "[Kill enemies]";
-                     var npc2 = World.RandomNPC();
-                     npc2.Location = World.RandomLocation(1);
-                     outcomes.Add(new GotoRule(npc2.Location));
-                     outcomes.Add(new KillRule(npc2));
+                     var npc2 = World.KnightEnemies[RandomNumberGenerator.NumberBetween(0, World.KnightEnemies.Count())];
+                     outcomes.Add(new GotoRule(World.RandomLocation(1)));
+                     outcomes.Add(new Rule("Kill " + npc2.Name));
                      outcomes.Add(new GotoRule(World.RandomLocation(), true));
                      outcomes.Add(new Rule("Report"));
                      break;
@@ -954,15 +916,14 @@ namespace PCG
 
                 case 4:
                     Text = "[Revenge, Justice]";
-                    var npc3 = World.RandomNPC();
-                    npc3.Location = World.RandomLocation(1);
-                    outcomes.Add(new GotoRule(npc3.Location));
-                    outcomes.Add(new Rule("Damage " + npc3.NPCName));
+                    var npc3 = World.KnightEnemies[RandomNumberGenerator.NumberBetween(0, World.KnightEnemies.Count())];
+                    outcomes.Add(new GotoRule(World.RandomLocation(1)));
+                    outcomes.Add(new Rule("Damage " + npc3.Name));
                     break;
 
                 case 5:
                     Text = "[Recover lost/stolen item]";
-                    var item2 = World.RandomItem(RandomNumberGenerator.NumberBetween(0, 3));
+                    var item2 = World.KnightItems[RandomNumberGenerator.NumberBetween(0, World.KnightItems.Count())];
                     var npc4 = World.RandomNPC();
                     outcomes.Add(new GetRule(item2));
                     outcomes.Add(new GotoRule(npc4.Location, true));
@@ -974,7 +935,7 @@ namespace PCG
                     var npc5 = World.RandomNPC();
                     npc5.Location = World.RandomLocation(1);
                     outcomes.Add(new GotoRule(npc5.Location));
-                    outcomes.Add(new Rule("Damage captures"));
+                    outcomes.Add(new Rule("Damage " + World.KnightEnemies[RandomNumberGenerator.NumberBetween(0, World.KnightEnemies.Count())].Name));
                     outcomes.Add(new Rule("Escort " + npc5.NPCName));
                     outcomes.Add(new GotoRule(World.RandomLocation(), true));
                     outcomes.Add(new Rule("Report"));
@@ -983,14 +944,14 @@ namespace PCG
                 case 7:
                     Text = "[Attack threatening entities]";
                     outcomes.Add(new GotoRule(World.RandomLocation(1)));
-                    outcomes.Add(new Rule("Damage entities"));
+                    outcomes.Add(new Rule("Damage " + World.KnightEnemies[RandomNumberGenerator.NumberBetween(0, World.KnightEnemies.Count())].Name));
                     outcomes.Add(new GotoRule(World.RandomLocation(), true));
                     outcomes.Add(new Rule("Report"));
                     break;
 
                 case 8:
                     Text = "[Create Diversion (1)]";
-                    var item3 = World.RandomItem(1);
+                    var item3 = World.KnightItems[RandomNumberGenerator.NumberBetween(0, World.KnightItems.Count())];
                     outcomes.Add(new GetRule(item3));
                     outcomes.Add(new GotoRule(World.RandomLocation(1), true));
                     outcomes.Add(new Rule("Use " + item3.ItemName));
@@ -1011,7 +972,7 @@ namespace PCG
                 case 11:
                     Text = "[Attack enemy]";
                     outcomes.Add(new GotoRule(World.RandomLocation(1)));
-                    outcomes.Add(new Rule("Damage enemy"));
+                    outcomes.Add(new Rule("Damage " + World.KnightEnemies[RandomNumberGenerator.NumberBetween(0, World.KnightEnemies.Count())].Name));
                     break;
 
                 case 12:
@@ -1026,7 +987,7 @@ namespace PCG
                 {
                 case 0:
                     Text = "[Deliver item for study]";
-                    var item = World.RandomItem(0);
+                    var item = World.PriestItems[RandomNumberGenerator.NumberBetween(0, World.PriestItems.Count())];
                     var npc = World.RandomNPC();
                     outcomes.Add(new GetRule(item));
                     outcomes.Add(new GotoRule(npc.Location, true));
@@ -1048,7 +1009,7 @@ namespace PCG
                     break;
 
                 case 3:
-                    var item2 = World.RandomItem(RandomNumberGenerator.NumberBetween(0, 2));
+                    var item2 = World.PriestItems[RandomNumberGenerator.NumberBetween(0, World.PriestItems.Count())];
                     Text = "[Use " + item2.ItemName + " in the field]";
                     outcomes.Add(new GetRule(item2));
                     outcomes.Add(new GotoRule(World.RandomLocation()));
@@ -1059,16 +1020,7 @@ namespace PCG
 
                 case 4:
                     Text = "[Obtain rare item]";
-                    int holder = RandomNumberGenerator.NumberBetween(0, 2);
-                    var item3 = World.RandomItem();
-                    if (holder == 0)
-                    {
-                        item3 = World.RandomItem(0);
-                    }
-                    else
-                    {
-                        item3 = World.RandomItem(2);
-                    }
+                    var item3 = World.PriestItems[RandomNumberGenerator.NumberBetween(0, World.PriestItems.Count())];
                     outcomes.Add(new GetRule(item3));
                     outcomes.Add(new GotoRule(World.RandomLocation(), true));
                     outcomes.Add(new Rule("Give rare " + item3.ItemName));
@@ -1076,10 +1028,9 @@ namespace PCG
 
                 case 5:
                     Text = "[Kill enemies]";
-                    var npc3 = World.RandomNPC();
-                    npc3.Location = World.RandomLocation(1);
-                    outcomes.Add(new GotoRule(npc3.Location));
-                    outcomes.Add(new KillRule(npc3));
+                    var npc3 = World.PriestEnemies[RandomNumberGenerator.NumberBetween(0, World.PriestEnemies.Count())];
+                    outcomes.Add(new GotoRule(World.RandomLocation(1)));
+                    outcomes.Add(new Rule("Kill " + npc3.Name));
                     outcomes.Add(new GotoRule(World.RandomLocation(), true));
                     outcomes.Add(new Rule("Report"));
                     break;
@@ -1114,20 +1065,23 @@ namespace PCG
                 case 10:
                     Text = "[Practice skill]";
                     outcomes.Add(new Rule("Use"));
+                    outcomes.Add(new Rule(World.PriestSkills[RandomNumberGenerator.NumberBetween(0, World.PriestSkills.Count())].Name));
                     break;
 
                 case 11:
                     Text = "[Research a skill (1)]";
-                    var item4 = World.RandomItem(3);
+                    var item4 = World.PriestItems[RandomNumberGenerator.NumberBetween(0, World.PriestItems.Count())];
                     outcomes.Add(new GetRule(item4));
                     outcomes.Add(new Rule("Use"));
+                    outcomes.Add(new Rule(World.PriestSkills[RandomNumberGenerator.NumberBetween(0, World.PriestSkills.Count())].Name));
                     break;
 
                 case 12:
                     Text = "[Research a skill (2)]";
-                    var item5 = World.RandomItem(3);
+                    var item5 = World.PriestItems[RandomNumberGenerator.NumberBetween(0, World.PriestItems.Count())];
                     outcomes.Add(new GetRule(item5));
                     outcomes.Add(new Rule("Experiment"));
+                    outcomes.Add(new Rule(World.PriestSkills[RandomNumberGenerator.NumberBetween(0, World.PriestSkills.Count())].Name));
                     break;
                 }
                 break;
@@ -1137,7 +1091,7 @@ namespace PCG
                 {
                 case 0:
                     Text = "[Deliver item for study]";
-                    var item = World.RandomItem(0);
+                    var item = World.KingItems[RandomNumberGenerator.NumberBetween(0, World.KingItems.Count())];
                     var npc = World.RandomNPC();
                     outcomes.Add(new GetRule(item));
                     outcomes.Add(new GotoRule(npc.Location, true));
@@ -1159,7 +1113,7 @@ namespace PCG
                     break;
 
                 case 3:
-                    var item2 = World.RandomItem(RandomNumberGenerator.NumberBetween(0, 2));
+                    var item2 = World.KingItems[RandomNumberGenerator.NumberBetween(0, World.KingItems.Count())];
                     Text = "[Use " + item2.ItemName + " in the field]";
                     outcomes.Add(new GetRule(item2));
                     outcomes.Add(new GotoRule(World.RandomLocation()));
@@ -1170,7 +1124,7 @@ namespace PCG
 
                 case 4:
                     Text = "[Obtain luxuries]";
-                    var item3 = World.RandomItem(2);
+                    var item3 = World.KingItems[RandomNumberGenerator.NumberBetween(0, World.KingItems.Count())];
                     outcomes.Add(new GetRule(item3));
                     outcomes.Add(new GotoRule(World.RandomLocation(), true));
                     outcomes.Add(new Rule("Give " + item3.ItemName));
@@ -1178,16 +1132,7 @@ namespace PCG
 
                 case 5:
                     Text = "[Obtain rare item]";
-                    int holder = RandomNumberGenerator.NumberBetween(0, 2);
-                    var item4 = World.RandomItem();
-                    if (holder == 0)
-                    {
-                        item4 = World.RandomItem(0);
-                    }
-                    else
-                    {
-                        item4 = World.RandomItem(2);
-                    }
+                    var item4 = World.KingItems[RandomNumberGenerator.NumberBetween(0, World.KingItems.Count())];
                     outcomes.Add(new GetRule(item4));
                     outcomes.Add(new GotoRule(World.RandomLocation(), true));
                     outcomes.Add(new Rule("Give rare " + item4.ItemName));
@@ -1195,20 +1140,18 @@ namespace PCG
 
                 case 6:
                     Text = "[Kill enemies]";
-                    var npc3 = World.RandomNPC();
-                    npc3.Location = World.RandomLocation(1);
-                    outcomes.Add(new GotoRule(npc3.Location));
-                    outcomes.Add(new KillRule(npc3));
+                    var npc3 = World.KingEnemies[RandomNumberGenerator.NumberBetween(0, World.KingEnemies.Count())];
+                    outcomes.Add(new GotoRule(World.RandomLocation(1)));
+                    outcomes.Add(new Rule("Kill " + npc3.Name));
                     outcomes.Add(new GotoRule(World.RandomLocation(), true));
                     outcomes.Add(new Rule("Report"));
                     break;
 
                 case 7:
                     Text = "[Revenge, Justice]";
-                    var npc4 = World.RandomNPC();
-                    npc4.Location = World.RandomLocation(1);
-                    outcomes.Add(new GotoRule(npc4.Location));
-                    outcomes.Add(new Rule("Damage " + npc4.NPCName));
+                    var npc4 = World.KingEnemies[RandomNumberGenerator.NumberBetween(0, World.KingEnemies.Count())];
+                    outcomes.Add(new GotoRule(World.RandomLocation(1)));
+                    outcomes.Add(new Rule("Damage " + npc4.Name));
                     break;
 
                 case 8:
@@ -1216,7 +1159,7 @@ namespace PCG
                     var npc5 = World.RandomNPC();
                     npc5.Location = World.RandomLocation(1);
                     outcomes.Add(new GotoRule(npc5.Location));
-                    outcomes.Add(new Rule("Damage captures"));
+                    outcomes.Add(new Rule("Damage " + World.KingEnemies[RandomNumberGenerator.NumberBetween(0, World.KingEnemies.Count())].Name));
                     outcomes.Add(new Rule("Escort " + npc5.NPCName));
                     outcomes.Add(new GotoRule(World.RandomLocation(), true));
                     outcomes.Add(new Rule("Report"));
@@ -1231,14 +1174,13 @@ namespace PCG
                 case 10:
                     Text = "[Attack enemy]";
                     outcomes.Add(new GotoRule(World.RandomLocation(1)));
-                    outcomes.Add(new Rule("Damage enemy"));
+                    outcomes.Add(new Rule("Damage " + World.KingEnemies[RandomNumberGenerator.NumberBetween(0, World.KingEnemies.Count())].Name));
                     break;
 
                 case 11:
-                    var item5 = World.RandomItem(RandomNumberGenerator.NumberBetween(1, 4));
+                    var item5 = World.KingItems[RandomNumberGenerator.NumberBetween(0, World.KingItems.Count())];
                     var npc6 = World.RandomNPC();
                     Text = "[Steal " + item5.ItemName + "]";
-
                     outcomes.Add(new GotoRule(npc6.Location));
                     outcomes.Add(new StealRule(npc6, item5));
                     outcomes.Add(new GotoRule(World.RandomLocation(), true));

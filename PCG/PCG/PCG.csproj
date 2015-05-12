@@ -56,9 +56,11 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReadTxt.cs" />
+    <Compile Include="RPG\Enemies.cs" />
     <Compile Include="RPG\Item.cs" />
     <Compile Include="RPG\Location.cs" />
     <Compile Include="RPG\NPC.cs" />
+    <Compile Include="RPG\Skills.cs" />
     <Compile Include="RPG\World.cs" />
     <Compile Include="RPG\RandomNumberGenerator.cs" />
     <EmbeddedResource Include="PCG.resx">

@@ -18,6 +18,45 @@ namespace PCG
         public static readonly List<Item> Valuables = new List<Item>();
         public static readonly List<Item> Materials = new List<Item>();
         
+        //Quality system
+
+        //Quality 1
+
+        public static readonly List<Item> FarmerItems = new List<Item>();
+        public static readonly List<Enemies> FarmerEnemies = new List<Enemies>();
+
+        public static readonly List<Item> BardItems = new List<Item>();
+        public static readonly List<Skills> BardSkills = new List<Skills>();
+        public static readonly List<Enemies> BardEnemies = new List<Enemies>();
+
+        public static readonly List<Item> BlacksmithItems = new List<Item>();
+        public static readonly List<Skills> BlacksmithSkills = new List<Skills>();
+
+        public static readonly List<Item> MerchantItems = new List<Item>();
+        public static readonly List<Enemies> MerchantEnemies = new List<Enemies>();
+
+        public static readonly List<Item> GuardItems = new List<Item>();
+        public static readonly List<Enemies> GuardEnemies = new List<Enemies>();
+
+        //Quality 2
+
+        public static readonly List<Item> MayorItems = new List<Item>();
+        public static readonly List<Skills> MayorSkills = new List<Skills>();
+        public static readonly List<Enemies> MayorEnemies = new List<Enemies>();
+
+        public static readonly List<Item> KnightItems = new List<Item>();
+        public static readonly List<Enemies> KnightEnemies = new List<Enemies>();
+
+        public static readonly List<Item> PriestItems = new List<Item>();
+        public static readonly List<Skills> PriestSkills = new List<Skills>();
+        public static readonly List<Enemies> PriestEnemies = new List<Enemies>();
+
+        //Quality 3
+
+        public static readonly List<Item> KingItems = new List<Item>();
+        public static readonly List<Enemies> KingEnemies = new List<Enemies>();
+
+
         public static readonly List<NPC> NPCs = new List<NPC>();
         public static bool SubQuestDone = false;
 
@@ -67,6 +106,16 @@ namespace PCG
         public const int ITEM_ID_CLAY = 18;
         public const int ITEM_ID_LEATHER = 19;
         public const int ITEM_ID_SCRIPTURE = 20;
+        public const int ITEM_ID_SEEDS = 21;
+        public const int ITEM_ID_FARMING = 22;
+        public const int ITEM_ID_FOOD = 23;
+        public const int ITEM_ID_INSTRUMENTS = 24;
+        public const int ITEM_ID_OLDSONGS = 25;
+        public const int ITEM_ID_LORE = 26;
+        public const int ITEM_ID_COSTUMES = 27;
+        public const int ITEM_ID_MASK = 28;
+
+
 
         public static Location CurrentLocation { get; set; } 
 
@@ -75,6 +124,205 @@ namespace PCG
             PopulateLocations();
             PopulateItems();
             PopulateNPC();
+            PopulateQuality();
+        }
+
+        private static void PopulateQuality()
+        {
+            //Quality 1
+            //FARMER
+            Item Seeds = new Item(ITEM_ID_SEEDS, "Seeds");
+            Item FarmingTools = new Item(ITEM_ID_FARMING, "Farming Tools");
+            Item Food = new Item(ITEM_ID_FOOD, "Food");
+            FarmerItems.Add(Seeds);
+            FarmerItems.Add(FarmingTools);
+            FarmerItems.Add(Food);
+
+            Enemies Rats = new Enemies("Rats");
+            Enemies Boar = new Enemies("Boar");
+            Enemies Moles = new Enemies("Moles");
+            Enemies Critter = new Enemies("Critter");
+            FarmerEnemies.Add(Rats);
+            FarmerEnemies.Add(Boar);
+            FarmerEnemies.Add(Moles);
+            FarmerEnemies.Add(Critter);
+
+            //BARD
+            Item Instruments = new Item(ITEM_ID_INSTRUMENTS, "Instruments");
+            Item songs = new Item(ITEM_ID_OLDSONGS, "Old Songs");
+            Item lore = new Item(ITEM_ID_LORE, "Written Lore");
+            Item costume = new Item(ITEM_ID_COSTUMES, "Costume");
+            Item mask = new Item(ITEM_ID_MASK, "Mask");
+            BardItems.Add(Instruments);
+            BardItems.Add(songs);
+            BardItems.Add(lore);
+            BardItems.Add(costume);
+            BardItems.Add(mask);
+
+            Skills learnLute = new Skills("Lute");
+            Skills learnflute = new Skills("Flute");
+            Skills learnDrums = new Skills("Drums");
+            BardSkills.Add(learnLute);
+            BardSkills.Add(learnflute);
+            BardSkills.Add(learnDrums);
+
+            Enemies Bandits = new Enemies("Bandits");
+            Enemies Soldiers = new Enemies("Soldiers");
+            Enemies Highwaymen = new Enemies("Highwaymen");
+            BardEnemies.Add(Bandits);
+            BardEnemies.Add(Soldiers);
+            BardEnemies.Add(Highwaymen);
+
+            //BLACKSMITH
+            Item Ores = new Item(29, "Ore");
+            Item Bars = new Item(30, "Bars");
+            Item Weapons = new Item(31, "Weapon");
+            Item Armor = new Item(32, "Armor");
+            BlacksmithItems.Add(Ores);
+            BlacksmithItems.Add(Bars);
+            BlacksmithItems.Add(Weapons);
+            BlacksmithItems.Add(Armor);
+
+            Skills Smithing = new Skills("Smithing");
+            Skills Smelting = new Skills("Smelting");
+            Skills Mining = new Skills("Mining");
+            BlacksmithSkills.Add(Smithing);
+            BlacksmithSkills.Add(Smelting);
+            BlacksmithSkills.Add(Mining);
+
+            //MERCHANT
+            Item Goods = new Item(33, "Goods");
+            Item Jewelry = new Item(ITEM_ID_JEWELRY, "Jewelry");
+            Item Silk = new Item(ITEM_ID_SILK, "Silk");
+            Item Spices = new Item(ITEM_ID_SPICES, "Spices");
+            Item Gold = new Item(ITEM_ID_GOLD, "Gold");
+            MerchantItems.Add(Goods);
+            MerchantItems.Add(Jewelry);
+            MerchantItems.Add(Silk);
+            MerchantItems.Add(Spices);
+            MerchantItems.Add(Gold);
+
+            Enemies spiders = new Enemies("Spiders");
+            MerchantEnemies.Add(Rats);
+            MerchantEnemies.Add(spiders);
+
+            //GUARD
+            Item Shackles = new Item(34, "Shackles");
+            Item Cage = new Item(35, "Cage on Wheels");
+            Item Keys = new Item(36, "Keys");
+            Item Torch = new Item(37, "Torch");
+            Item Gunpowder = new Item(38, "Gunpowder");
+            GuardItems.Add(Weapons);
+            GuardItems.Add(Shackles);
+            GuardItems.Add(Cage);
+            GuardItems.Add(Keys);
+            GuardItems.Add(Torch);
+            GuardItems.Add(Gunpowder);
+
+            Enemies Orcs = new Enemies("Orcs");
+            Enemies Undead = new Enemies("Undead");
+            GuardEnemies.Add(Bandits);
+            GuardEnemies.Add(Soldiers);
+            GuardEnemies.Add(Orcs);
+            GuardEnemies.Add(Undead);
+
+
+            //Quality 2
+            //MAYOR
+            Item books = new Item(ITEM_ID_BOOK, "Books");
+            Item blueprints = new Item(39, "Blueprints");
+            Item paintings = new Item(40, "Paintings");
+            Item wine = new Item(41, "Wine");
+            MayorItems.Add(books);
+            MayorItems.Add(blueprints);
+            MayorItems.Add(paintings);
+            MayorItems.Add(wine);
+
+            Skills studyLanguage = new Skills("study Language");
+            Skills studyMath = new Skills("study Math");
+            Skills alchemy = new Skills("experiment with Alchemy");
+            MayorSkills.Add(studyLanguage);
+            MayorSkills.Add(studyMath);
+            MayorSkills.Add(alchemy);
+
+            Enemies moth = new Enemies("Moth");
+            Enemies political = new Enemies("Political Opposition");
+            MayorEnemies.Add(Rats);
+            MayorEnemies.Add(spiders);
+            MayorEnemies.Add(moth);
+            MayorEnemies.Add(Highwaymen);
+            MayorEnemies.Add(political);
+
+            //KNIGHT
+            Item artifact = new Item(42, "Artifact");
+            Item MayorsSigil = new Item(43, "Mayors Sigil");
+            Item HolyRelic = new Item(44, "Holy Relic");
+            KnightItems.Add(artifact);
+            KnightItems.Add(MayorsSigil);
+            KnightItems.Add(HolyRelic);
+            KnightItems.Add(Torch);
+            KnightItems.Add(Gunpowder);
+
+            Enemies Ogres = new Enemies("Ogres");
+            Enemies Wyvern = new Enemies("Wyvern");
+            Enemies Witch = new Enemies("Witch");
+            Enemies Bears = new Enemies("Bears");
+            Enemies Trolls = new Enemies("Trolls");
+            KnightEnemies.Add(Highwaymen);
+            KnightEnemies.Add(Bandits);
+            KnightEnemies.Add(Ogres);
+            KnightEnemies.Add(Wyvern);
+            KnightEnemies.Add(Witch);
+            KnightEnemies.Add(Bears);
+            KnightEnemies.Add(Trolls);
+
+            //PRIEST
+            Item Tome = new Item(ITEM_ID_TOME, "Tome");
+            Item Scripture = new Item(ITEM_ID_SCRIPTURE, "Scripture");
+            Item HolyBook = new Item(45, "Holy Book");
+            PriestItems.Add(Tome);
+            PriestItems.Add(Scripture);
+            PriestItems.Add(HolyRelic);
+            PriestItems.Add(HolyBook);
+
+            Skills Rituals = new Skills("Holy Ritual");
+            Skills Science = new Skills("Science");
+            Skills Sanctifying = new Skills("Sanctifying liquids");
+
+            PriestSkills.Add(studyLanguage);
+            PriestSkills.Add(Rituals);
+            PriestSkills.Add(Science);
+            PriestSkills.Add(Sanctifying);
+
+            Enemies Cultists = new Enemies("Cultists");
+            Enemies Infidels = new Enemies("Infidels");
+            Enemies Sinners = new Enemies("Sinners");
+
+            PriestEnemies.Add(Cultists);
+            PriestEnemies.Add(Infidels);
+            PriestEnemies.Add(Sinners);
+            PriestEnemies.Add(Undead);
+
+            //Quality 3
+            //KING
+
+            Item legendaryArtifact = new Item(46, "Legendary Artifact");
+            Item Gems = new Item(47, "Mystical Gem");
+            Item MagicalItem = new Item(48, "Magical Item");
+            KingItems.Add(legendaryArtifact);
+            KingItems.Add(Gems);
+            KingItems.Add(MagicalItem);
+
+            Enemies Pretender = new Enemies("Pretender");
+            Enemies BanditLeader = new Enemies("Bandit Leader");
+            Enemies Rival = new Enemies("Rival");
+            Enemies Archmage = new Enemies("Archmage");
+            Enemies Dragon = new Enemies("Dragon");
+            KingEnemies.Add(Pretender);
+            KingEnemies.Add(BanditLeader);
+            KingEnemies.Add(Rival);
+            KingEnemies.Add(Archmage);
+            KingEnemies.Add(Dragon);
         }
 
         private static void PopulateLocations()
@@ -193,7 +441,7 @@ namespace PCG
            // NPCs.Add(CORRIE_NARDOVINO);
 
             RandomNumberGenerator.NumberBetween(0, Items.Count);
-        }       
+        }
 
 		public static Item RandomItem(int input = 0) {
             if (input == 0){
@@ -220,8 +468,24 @@ namespace PCG
             }       
 		}
 
-		public static NPC RandomNPC() {
-			return NPCs [RandomNumberGenerator.NumberBetween (0, NPCs.Count)];
+		public static NPC RandomNPC(int input = 0) {
+
+            if (input == 0)
+            {
+                return NPCs[RandomNumberGenerator.NumberBetween(0, NPCs.Count)];
+            }
+            else if (input == 1)
+            {
+                return NPCs[RandomNumberGenerator.NumberBetween(0, 5)];
+            }
+            else if (input == 2)
+            {
+                return NPCs[RandomNumberGenerator.NumberBetween(5, 8)];
+            }
+            else
+            {
+                return NPCs[RandomNumberGenerator.NumberBetween(8, 8)];
+            }
 		}
     }
 }
