@@ -653,7 +653,7 @@ namespace PCG
                 break;
 
             case NPC.job.Guard:
-                switch (RandomNumberGenerator.NumberBetween(0, 18))
+                switch (RandomNumberGenerator.NumberBetween(0, 17))
                 {
                 case 0:
                     Text = "[Spy]";
@@ -795,12 +795,6 @@ namespace PCG
                 case 16:
                     Text = "[Practice Combat]";
                     outcomes.Add(new Rule("Damage"));
-                    break;
-
-                case 17:
-                    Text = "[Trade for supplies]";
-                    outcomes.Add(new GotoRule(World.RandomLocation()));
-                    outcomes.Add(new Rule("Exchange"));
                     break;
                 }
                 break;

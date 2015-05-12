@@ -12,6 +12,8 @@ namespace PCG
 {
     public partial class PCG : Form
     {
+        public List<int> listOfRolls = new List<int>();
+
         public PCG()
         {
             InitializeComponent();
@@ -28,8 +30,10 @@ namespace PCG
             comboBox2.Items.Add("Wealth");
             comboBox2.Items.Add("Ability");
             comboBox2.Items.Add("Equipment");
-			//-------------------------------------
+            //-------------------------------------
         }
+
+
 
         private void button1_Click_1(object sender, EventArgs e)
         {
@@ -48,18 +52,23 @@ namespace PCG
         {
             rtb1.Text = "";
 
-            QualityOne(5,1,6, World.RandomNPC());
+            QualityOne(1,6,0, World.RandomNPC());
         }
 
         private void QualityOne(int a, int b, int c, NPC npc)
         {
-            float roll1 = RandomNumberGenerator.NumberBetween(a, a);
-            float roll2 = RandomNumberGenerator.NumberBetween(b, c);
+            int roll1 = RandomNumberGenerator.NumberBetween(a, b);
+            listOfRolls.Add(c);
 
-            Console.WriteLine("Rolls NPC1: " + roll1 + "  " + roll2);
+            
 
-            if (roll1 > roll2)
+            if (listOfRolls.Contains(roll1))
             {
+                listOfRolls.Clear();
+                QualityTwo(1, 4, 0, World.RandomNPC());
+            }else
+            {
+                //Console.WriteLine("Rolls NPC1: " + roll1 + "  " + listOfRolls.Last());
                 Rule start = new Motivations(npc.jobs);
 
                 foreach (var line in Rule.getText(start))
@@ -67,21 +76,30 @@ namespace PCG
                     rtb1.Text += line + "\n";
                 }
 
-                QualityOne(a - 1, b + 1, c, npc);
-            }else{
-                QualityTwo(3, 1, 4, World.RandomNPC());
+                QualityOne(a, b, c + 1, npc);
             }
         }
 
         private void QualityTwo(int a, int b, int c, NPC npc)
         {
-            float roll1 = RandomNumberGenerator.NumberBetween(a, a);
-            float roll2 = RandomNumberGenerator.NumberBetween(b, c);
+            int roll1 = RandomNumberGenerator.NumberBetween(a, b);
+            listOfRolls.Add(c);
 
-            Console.WriteLine("Rolls NPC2: " + roll1 + "  " + roll2);
-
-            if (roll1 > roll2)
+            if (listOfRolls.Contains(roll1))
             {
+                listOfRolls.Clear();
+                //Console.WriteLine("NPC3:");
+                Rule start = new Motivations(World.RandomNPC().jobs);
+
+                foreach (var line in Rule.getText(start))
+                {
+                    rtb1.Text += line + "\n";
+                }
+            }
+            else
+            {
+                //Console.WriteLine("Rolls NPC2: " + roll1 + "  " + listOfRolls.Last());
+
                 Rule start = new Motivations(npc.jobs);
 
                 foreach (var line in Rule.getText(start))
@@ -89,15 +107,7 @@ namespace PCG
                     rtb1.Text += line + "\n";
                 }
 
-                QualityTwo(a - 1, b + 1, c, npc);
-            }else{
-                Rule start = new Motivations(World.RandomNPC().jobs);
-                Console.WriteLine("Rolls NPC3");
-
-                foreach (var line in Rule.getText(start))
-                {
-                    rtb1.Text += line + "\n";
-                }
+                QualityTwo(a, b, c + 1, npc);
             }
         }
 
