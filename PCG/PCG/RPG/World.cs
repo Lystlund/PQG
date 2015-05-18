@@ -115,8 +115,6 @@ namespace PCG
         public const int ITEM_ID_COSTUMES = 27;
         public const int ITEM_ID_MASK = 28;
 
-
-
         public static Location CurrentLocation { get; set; } 
 
         static World()
