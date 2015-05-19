@@ -112,10 +112,10 @@ namespace PCG
                 return "\nThe " + npc.jobs + " Says: I met with the " + npc2.jobs + " in the pub and told him about your assistance over an ale. He too would like your assistance. Please go to him. \n \n";
 
             case 1:
-                return "\nThe " + npc.jobs + " Says: Now that you have been so kind to assist me in need, you should seek to help other people as well. Try to visit " + npc2.jobs + " and see if he needs your assistance.\n \n";
+                return "\nThe " + npc.jobs + " Says: Now that you have been so kind to assist me in need, you should seek to help other people as well. Try to visit the " + npc2.jobs + " and see if he needs your assistance.\n \n";
 
             case 2:
-                return "\nThe " + npc.jobs + " Says: Thank you for your kind assistance, I don't have anymore for you to do but I heard " + npc2.jobs + " is looking for someone of your talents.\n \n";
+                return "\nThe " + npc.jobs + " Says: Thank you for your kind assistance, I don't have anymore for you to do but I heard the " + npc2.jobs + " is looking for someone of your talents.\n \n";
 
             case 3:
                 return "\nThe " + npc.jobs + " Says: I know I’m just a simple " + npc.jobs + ", but I thank you for your help. I have told the " + npc2.jobs + " about what you have done and he was impressed. He would like you to go to him and help him.\n \n";
